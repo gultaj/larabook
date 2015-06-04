@@ -1,0 +1,14 @@
+{
+  "name": "larabook",
+  "version": "1.0.0",
+  "dependencies": {
+    "stylus": "^0.51.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.3.0",
+    "gulp-stylus": "^2.0.2",
+    "gulp-watch": "^4.2.4"
+  },
+  "license": "ISC"
+}
