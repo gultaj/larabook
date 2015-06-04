@@ -10,13 +10,15 @@ namespace Larabook\Registration;
 
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+
+use Larabook\Registration\Events\UserRegistered;
 use Laracasts\Commander\CommandHandler;
-use User;
-use Validator;
+use Laracasts\Commander\Events\DispatchableTrait;
+use Redirect, User, Validator;
 
 class RegisterUserCommandHandler implements CommandHandler {
 
+    use DispatchableTrait;
     /**
      * Handle the command
      *
@@ -25,14 +27,16 @@ class RegisterUserCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $validator = Validator::make($data = $command->all(), User::$rules);
+        $user = User::create([
+            'username' => $command->username,
+            'email' => $command->email,
+            'password' => $command->password
+        ]);
 
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
+        $user->raise(new UserRegistered($user));
 
-        $user = User::create($data);
+        $this->dispatchEventsFor($user);
 
-
+        return $user;
     }
 }

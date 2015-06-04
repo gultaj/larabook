@@ -43,7 +43,7 @@ class RegistrationController extends \BaseController {
 
         Auth::login($user);
 
-		return Redirect::home();
+        return Redirect::home()->with(['notify.type' => 'success', 'notify.message' => 'Glad to have you as a new Larabook member!']);
 	}
 
 }

@@ -4,10 +4,11 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Laracasts\Commander\Events\EventGenerator;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait;
+	use UserTrait, RemindableTrait, EventGenerator;
 
 	/**
 	 * The database table used by the model.
@@ -30,5 +31,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed'
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
 }
