@@ -32,9 +32,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'password' => 'required|confirmed'
     ];
 
+    public static $authRules = [
+        'email' => 'required',
+        'password' => 'required'
+    ];
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
     }
 
+    public function statuses()
+    {
+        return $this->hasMany('Status');
+    }
 }

@@ -8,13 +8,10 @@
 
 namespace Larabook\Registration;
 
-
-use Illuminate\Support\Facades\Auth;
-
 use Larabook\Registration\Events\UserRegistered;
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
-use Redirect, User, Validator;
+use Redirect, User, Auth;
 
 class RegisterUserCommandHandler implements CommandHandler {
 
@@ -29,13 +26,15 @@ class RegisterUserCommandHandler implements CommandHandler {
     {
         $user = User::create([
             'username' => $command->username,
-            'email' => $command->email,
+            'email'    => $command->email,
             'password' => $command->password
         ]);
 
         $user->raise(new UserRegistered($user));
 
         $this->dispatchEventsFor($user);
+
+        Auth::login($user, true);
 
         return $user;
     }

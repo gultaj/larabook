@@ -15,3 +15,11 @@ Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
 Route::get('register', ['as' => 'register', 'uses' => 'RegistrationController@create']);
 Route::post('register', ['as' => 'register.store', 'uses' => 'RegistrationController@store']);
+
+Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
+Route::post('login', ['as' => 'login.post', 'uses' => 'SessionsController@store']);
+
+Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
+
+Route::get('statuses', ['as' => 'statuses', 'uses' => 'StatusController@index']);
+Route::post('statuses', ['as' => 'statuses', 'uses' => 'StatusController@store']);

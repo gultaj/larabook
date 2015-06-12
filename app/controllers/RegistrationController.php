@@ -10,6 +10,8 @@ class RegistrationController extends \BaseController {
     public function __construct(CommandBus $command)
     {
         $this->command = $command;
+
+        $this->beforeFilter('guest');
     }
 
 
@@ -41,7 +43,7 @@ class RegistrationController extends \BaseController {
 
         $user = $this->command->execute(new RegisterUserCommand($username, $email, $password));
 
-        Auth::login($user);
+//        Auth::login($user);
 
         return Redirect::home()->with(['notify.type' => 'success', 'notify.message' => 'Glad to have you as a new Larabook member!']);
 	}

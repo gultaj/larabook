@@ -5,12 +5,13 @@
   "license": "MIT",
   "require": {
     "laravel/framework": "4.2.*",
-    "laracasts/commander": "~1.0"
+    "laracasts/commander": "~1.0",
+    "codeception/codeception": "^2.1@dev",
+    "laracasts/testdummy": "~2.0",
+    "barryvdh/laravel-debugbar": "~1.8"
   },
   "require-dev": {
     "way/generators": "~2.0",
-    "codeception/codeception": "~2.0",
-    "laracasts/testdummy": "~1.0",
     "barryvdh/laravel-ide-helper": "~1.11"
   },
   "autoload": {
@@ -19,10 +20,11 @@
       "app/controllers",
       "app/models",
       "app/database/migrations",
-      "app/database/seeds",
-      "app/tests/TestCase.php",
-      "app/Larabook"
-    ]
+      "app/database/seeds"
+    ],
+    "psr-4": {
+      "Larabook\\": "app/Larabook"
+    }
   },
   "scripts": {
     "post-install-cmd": [
