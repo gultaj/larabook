@@ -9,9 +9,9 @@ $I->assertTrue(Auth::check());
 
 $I->amOnPage('statuses');
 
-$post = ['body' => 'My first post!'];
+$body = 'My first post!';
 
-$I->postAStatus($post);
+$I->postAStatus($body);
 
 $I->seeCurrentUrlEquals('/statuses');
-$I->see($post['body']);
+$I->see($body);

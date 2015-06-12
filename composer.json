@@ -20,7 +20,8 @@
       "app/controllers",
       "app/models",
       "app/database/migrations",
-      "app/database/seeds"
+      "app/database/seeds",
+      "app/Larabook/Helpers"
     ],
     "psr-4": {
       "Larabook\\": "app/Larabook"

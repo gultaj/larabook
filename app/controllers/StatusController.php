@@ -19,7 +19,7 @@ class StatusController extends \BaseController {
 	 */
 	public function index()
 	{
-        $statuses = Auth::user()->statuses;
+        $statuses = Status::where('user_id', '=', Auth::user()->id)->with('user')->latest()->get();
 
 		return View::make('statuses.index', compact('statuses'));
 	}

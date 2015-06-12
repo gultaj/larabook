@@ -30,10 +30,7 @@ class PublishStatusCommandHandler implements CommandHandler {
         $status = new Status(['body' => $command->body]);
 
         \Auth::user()->statuses()->save($status);
-//        $status = Status::create([
-//            'body' => $command->body,
-//            'user_id' => \Auth::user()->id
-//        ]);
+
         $status->raise(new StatusWasPublished($status));
 
         $this->dispatchEventsFor($status);
