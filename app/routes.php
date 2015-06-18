@@ -23,3 +23,6 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy'])
 
 Route::get('statuses', ['as' => 'statuses', 'uses' => 'StatusController@index']);
 Route::post('statuses', ['as' => 'statuses', 'uses' => 'StatusController@store']);
+
+Route::get('users', ['as' => 'users', 'uses' => 'UsersController@index']);
+Route::get('users/{username}', ['as' => 'users.profile', 'uses' => 'UsersController@show']);

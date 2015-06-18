@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
+                <li>{{ link_to_route('users', 'Users') }}</li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -25,9 +25,7 @@
                         {{ $currentUser->username }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li>{{ link_to_route('users.profile', 'Your profile', ['username' => $currentUser->username]) }}</li>
                         <li class="divider"></li>
                         <li>{{ link_to_route('logout', 'Log out') }}</li>
                     </ul>
