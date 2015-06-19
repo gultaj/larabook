@@ -3,13 +3,14 @@
 use Larabook\Status\PublishStatusCommand;
 use Laracasts\Commander\CommandBus;
 
-class StatusController extends \BaseController {
+class StatusesController extends \BaseController {
 
     private $command;
 
     function __construct(CommandBus $command)
     {
         $this->command = $command;
+        $this->beforeFilter('auth');
     }
 
     /**
@@ -19,7 +20,9 @@ class StatusController extends \BaseController {
 	 */
 	public function index()
 	{
-        $statuses = Status::where('user_id', '=', Auth::user()->id)->with('user')->latest()->get();
+        $ids = User::findOrFail(Auth::id())->follows()->lists('followed_id');
+        $ids[] = Auth::id();
+        $statuses = Status::whereIn('user_id', $ids)->with('user')->latest()->get();
 
 		return View::make('statuses.index', compact('statuses'));
 	}

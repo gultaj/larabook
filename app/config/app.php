@@ -125,6 +125,7 @@ return array(
         'Laracasts\Commander\CommanderServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'Larabook\Providers\EventServiceProvider',
 	),
 
 	/*

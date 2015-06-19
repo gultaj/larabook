@@ -11,11 +11,12 @@ class StatusesTableSeeder extends Seeder {
 
         $users = User::lists('id');
 
-		foreach(range(1, 50) as $index)
+		foreach(range(1, 250) as $index)
 		{
 			Status::create([
                 'user_id' => $faker->randomElement($users),
                 'body' => $faker->sentence,
+                'created_at' => $faker->dateTime,
 			]);
 		}
 	}

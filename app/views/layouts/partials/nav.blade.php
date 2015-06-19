@@ -8,12 +8,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {{ link_to_route('home', 'Larabook', null, ['class' => 'navbar-brand']) }}
+            @if (Auth::check())
+                {{ link_to_route('statuses', 'Larabook', null, ['class' => 'navbar-brand']) }}
+            @else
+                {{ link_to_route('home', 'Larabook', null, ['class' => 'navbar-brand']) }}
+            @endif
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                 <li>{{ link_to_route('users', 'Users') }}</li>
             </ul>
 

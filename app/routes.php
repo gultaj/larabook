@@ -21,8 +21,11 @@ Route::post('login', ['as' => 'login.post', 'uses' => 'SessionsController@store'
 
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 
-Route::get('statuses', ['as' => 'statuses', 'uses' => 'StatusController@index']);
-Route::post('statuses', ['as' => 'statuses', 'uses' => 'StatusController@store']);
+Route::get('statuses', ['as' => 'statuses', 'uses' => 'StatusesController@index']);
+Route::post('statuses', ['as' => 'statuses', 'uses' => 'StatusesController@store']);
 
 Route::get('users', ['as' => 'users', 'uses' => 'UsersController@index']);
 Route::get('users/{username}', ['as' => 'users.profile', 'uses' => 'UsersController@show']);
+
+Route::post('follows', ['as' => 'follows', 'uses' => 'FollowsController@store']);
+Route::delete('follows/{id}', ['as' => 'follow', 'uses' => 'FollowsController@destroy']);
